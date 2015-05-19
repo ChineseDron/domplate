@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Switch demo</title>
+  <script src="../domplate-min.js"></script>
+</head>
+<body>
+
+<div id="container">
+  <ul switch="alert.type">
+    <li case="notice">{{ alert.message }}</li>
+    <li case="warning">{{ alert.message }}</li>
+    <li case="error">{{ alert.message }}</li>
+    <li default>{{ alert.message }}</li>
+  </ul>
+  <button onclick=" $this.changeAlert(); ">Change Type</button>
+</div>
+
+</body>
+<script>
+  var data = {
+    alert: { type: "notice", message: "Notice" }
+  };
+
+  var types = [ "notice", "warning", "error", "ooxx" ];
+  var messages = [ "Notice", "Warning", "Error", "Other" ];
+  var index = 0;
+
+  domplate( "#container" ).load( data ).methods( {
+    changeAlert: function(){
+      if( ++ index > 3 )
+        index = 0;
+      data.alert.type = types[ index ];
+      data.alert.message = messages[ index ];
+    }
+  } );
+</script>
+</html>

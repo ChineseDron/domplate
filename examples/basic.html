@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Basic demo</title>
+  <script src="../domplate-min.js"></script>
+</head>
+<body>
+  <div id="container">
+    <p>Hello, {{ name }}!</p>
+  </div>
+  <script>
+    domplate( "#container" ).load( { name: "domplate" } );
+  </script>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Show demo</title>
+  <script src="../domplate-min.js"></script>
+</head>
+<body>
+
+<div id="container">
+  <button onclick=" $this.data.showWelcome = !$this.data.showWelcome; ">Change Show</button>
+  <p show="showWelcome">Hello, {{ name }}!</p>
+</div>
+
+</body>
+<script>
+  domplate( "#container" ).load( {
+    showWelcome: false,
+    name: "domplate"
+  } );
+</script>
+</html>

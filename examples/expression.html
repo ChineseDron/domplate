@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Expression demos</title>
+  <link rel="stylesheet" type="text/css" href="./example.css">
+  <script src="../domplate-min.js"></script>
+</head>
+<body>
+
+<h1>Expression</h1>
+
+<!-- section: In text node -->
+<div class="demo-section">
+  <h3>In text node</h3>
+  <div id="demo-1">
+    <p>Name: {{ name }}</p>
+    <p>Sex: {{ sex == 1 ? "boy" : "girl" }}</p>
+  </div>
+</div>
+
+<script>
+  domplate( "#demo-1" ).load( { name: "dron", sex: 1 } );
+</script>
+<!-- /section -->
+
+<!-- section: In element attributes -->
+<div class="demo-section">
+  <h3>In element attributes</h3>
+  <div id="demo-2">
+    <p d-style="color: {{ color }};">Name: {{ name }}</p>
+    <p>Sex: {{ sex == 1 ? "boy" : "girl" }}</p>
+    <p></p>
+  </div>
+</div>
+
+<script>
+  domplate( "#demo-2" ).load( { name: "dron", sex: 1, color: "#f00" } );
+</script>
+<!-- /section -->
+
+<!-- section: With custom filter -->
+<div class="demo-section">
+  <h3>With custom filter</h3>
+  <div id="demo-3">
+    <p>Name: {{ name }}</p>
+    <p>Sex: {{ sexNamed( sex ) }}</p>
+  </div>
+</div>
+
+<script>
+  domplate( "#demo-3" ).load( { name: "dron", sex: 1 } );
+
+  function sexNamed( sex ){
+    return sex == 1 ? "boy" : "girl";
+  }
+</script>
+<!-- /section -->
+
+<!-- section: Synchronous data update -->
+<div class="demo-section">
+  <h3>Synchronous data update</h3>
+  <div id="demo-4">
+    <p>Random number: {{ nowNumber }}</p>
+    <p d-style="color: {{ color }};">Or: {{ Math.random() }}</p>
+    <button onclick=" $this.myMethod(); ">Call myMethod</button>
+  </div>
+</div>
+
+<script>
+  domplate( "#demo-4" ).load( { nowNumber: 0, color: "red" } ).methods( {
+    myMethod: function(){
+      this.data.nowNumber = Math.random();
+      this.data.color = this.data.color == "red" ? "green" : "red";
+    }
+  } );
+</script>
+<!-- /section -->
+
+</body>
+</html>

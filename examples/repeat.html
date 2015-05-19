@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Repeat demo</title>
+  <script src="../domplate-min.js"></script>
+</head>
+<body>
+
+<div id="container">
+  <ul>
+    <li repeat="item in lists" data-index="{{ $index }}">
+      {{ type }}-{{ item.index }}: {{ item.content }}
+    </li>
+  </ul>
+  <button onclick=" $this.newData(); " d-disabled="{{ !canAdd }}">{{ canAdd ? "Add one" : "Can't add now" }}</button>
+</div>
+
+<script>
+  var data = {
+    lists: [
+        { index: 0, content: "Apple" },
+        { index: 1, content: "Peach" },
+        { index: 2, content: "Pear" },
+        { index: 3, content: "Watermelon" }
+    ],
+    type: "fruit",
+    canAdd: true
+  };
+
+  domplate( "#container" ).load( data ).methods( {
+    newData: function(){
+      data.lists[ 1 ].content = "Grapes";
+      data.lists.push( { index: 4, content: "Banana" } );
+      data.canAdd = false;
+    }
+  } );
+</script>
+
+
+
+
+<div id="container2">
+  <ul>
+    <li repeat="item in fruits">
+      Fruit {{ $index }}: {{ item }}
+    </li>
+  </ul>
+  <button onclick=" $this.data.fruits.Grapes = 88; $this.data.canAdd = false; " d-disabled="{{ !canAdd }}">{{ canAdd ? "Add one" : "Can't add now" }}</button>
+</div>
+
+<script>
+  domplate( "#container2" ).load( {
+    fruits: {
+      Apple: 50,
+      Peach: 34,
+      Pear: 13,
+      Watermelon: 78
+    },
+    type: "fruit",
+    canAdd: true
+  } );
+</script>
+
+</body>
+
+</html>

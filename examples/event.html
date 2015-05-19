@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Event demo</title>
+  <script src="../domplate-min.js"></script>
+</head>
+<body>
+
+<div id="container">
+  <p>计数: {{ count }}</p>
+  <p>输入：<input type="text" value="{{ count }}" onkeyup=" $this.data.count = this.value; "></p>
+  <p>
+    <button onclick=" $this.data.count ++; ">增加</button>
+    <button onclick=" $this.subtract(); ">减少</button>
+  </p>
+</div>
+
+<script>
+  domplate( "#container" ).load( { count: 0 } ).methods( {
+    subtract: function(){
+      this.data.count --;
+    }
+  } );
+</script>
+
+</body>
+</html>

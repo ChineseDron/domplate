@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="reset.css">
+  <link rel="stylesheet" type="text/css" href="todo.css">
+  <script src="../domplate-min.js"></script>
+</head>
+<body>
+  <div id="todo">
+    <div class="clean" show=" !todos.length ">all done</div>
+    <ul id="list">
+      <li repeat="todo in todos">
+        <input d-onclick=" $this.done( {{ $index }} ); " type="checkbox" d-checked="{{ todo.done }}">
+        <a d-onclick=" $this.done( {{ $index }} ); " class="{{ todo.done ? 'done' : '' }}">{{ todo.content }}</a>
+      </li>
+    </ul>
+    <input type="text" name="" value="" onkeydown=" if( event.keyCode === 13 ) $this.add( value ), value = ''; ">
+    <input type="button" onclick=" $this.clear(); " value="Clear">
+  </div>
+  <script>
+    domplate( "#todo" )
+
+    .load( {
+      todos: [
+        { done: true, content: "Learn javascript" },
+        { done: false, content: "Learn domplate" }
+      ]
+    } )
+
+    .methods( {
+      done: function( index ){
+        this.data.todos[ index ].done = !this.data.todos[ index ].done;
+      },
+
+      add: function( text ){
+        if( text )
+          this.data.todos.push( { done: false, content: text } );
+      },
+
+      clear: function(){
+        var todos = this.data.todos;
+
+        for( var i = todos.length - 1; i >= 0; i-- )
+          if( todos[ i ].done )
+            todos.splice( i, 1 );
+      }
+    } );
+  </script>
+</body>
+</html>

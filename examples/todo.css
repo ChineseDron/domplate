@@ -1,0 +1,54 @@
+body{
+      text-align: center;
+    }
+    #todo{
+      width: 200px;
+      font-size: 14px;
+      line-height: 2em;
+      text-align: left;
+      margin: 30px auto;
+    }
+    #todo .clean{
+      color: #ccc;
+    }
+    #todo ul{
+      display: block;
+      margin-bottom: 20px;
+    }
+    #todo ul li{
+
+    }
+    #todo ul li a{
+      cursor: pointer;
+    }
+    #todo ul li a.done{
+      text-decoration: line-through;
+    }
+
+    #todo > input{
+      line-height: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 5px;
+      outline: none;
+      -webkit-appearance: none;
+      margin: 2px;
+    }
+
+    #todo > input[type="button"]{
+      background-color: #f6f6f6;
+    }
+
+    #todo > input[type="button"]:hover{
+      background-color: #3597ff;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    #todo > input{
+      width: 150px;
+    }
+
+    #todo > button{
+      width: 80px;
+    }

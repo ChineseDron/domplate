@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Init demo</title>
+  <script src="../domplate-min.js"></script>
+</head>
+<body>
+
+<div id="container" init="{ name: 'world' }">
+  <p>Hello, {{ name }}!</p>
+  <p>HELLO, {{ name.toUpperCase() }}!</p>
+  <button onclick=" $this.data.name = $this.data.name == 'world' ? 'domplate' : 'world'; ">Change Name</button>
+</div>
+
+<div id="container-1" init="getData()">
+  <p>Hello, {{ name }}!</p>
+  <p>HELLO, {{ name.toUpperCase() }}!</p>
+  <button onclick=" $this.data.name = $this.data.name == 'world' ? 'domplate' : 'world'; ">Change Name</button>
+</div>
+
+</body>
+<script>
+  domplate( "#container" );
+  domplate( "#container-1" );
+
+  function getData(){
+    return { name: 'world' };
+  }
+</script>
+</html>
