@@ -1,7 +1,7 @@
 /**
  * domplate.js
  * @author dron
- * @version 0.1.0
+ * @version 0.1.1
  * @create 2015-04-10
  */
 
@@ -145,14 +145,15 @@ void function( global, doc, trim, each, eachReverse, forin, copy, clone, equal, 
 
   .statics( {
     eventWrapper: tmpl( [
-      "void function(){ ",
+      "return function(){ ",
         "var __ctrl = domplate.handle({{ controllerHandleId }}); ",
         "var __lastUpdateInvoked = __ctrl._updateInvoked; ",
-        "void function( $this, __ctrl, __lastUpdateInvoked ){ ",
+        "var __result = function( $this, __ctrl, __lastUpdateInvoked ){ ",
           "{{ value }} ",
         "}.call( this, __ctrl ); ",
         "if( __lastUpdateInvoked === __ctrl._updateInvoked ) ",
           "__ctrl.update(); ",
+        "return __result; ",
       "}.call( this );"
     ] )
   } );
